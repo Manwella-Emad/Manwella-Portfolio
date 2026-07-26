@@ -28,3 +28,4 @@ sec.style.transform="translateY(80px)";
 sec.style.transition=".8s";
 
 });
+document.getElementById("year").textContent = new Date().getFullYear();

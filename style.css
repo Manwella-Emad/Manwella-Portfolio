@@ -284,7 +284,7 @@ nav a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align:center;
+  text-align: center;
   opacity: 0;
   transition: 0.4s;
 }
@@ -299,6 +299,10 @@ nav a:hover {
 }
 
 #education {
+  display: block;
+}
+
+.education-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
