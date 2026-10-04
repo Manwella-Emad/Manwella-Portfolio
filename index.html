@@ -25,38 +25,57 @@
   </head>
 
   <body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+      <span class="bg-shape bg-shape-one"></span>
+      <span class="bg-shape bg-shape-two"></span>
+      <span class="bg-shape bg-shape-three"></span>
+    </div>
     <!--================ NAVBAR ================-->
 
-    <header>
-      <div class="logo"><span>Manwella</span> Emad</div>
+    <header id="navbar">
+      <a href="#home" class="logo"> <span>Manwella</span> Emad </a>
 
       <nav>
-        <a href="#home">Home</a>
+        <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
         <a href="#education">Education</a>
         <a href="#tools">Tools</a>
         <a href="#skills">Skills</a>
         <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
+        <a href="#projects">Work</a>
+
         <a href="#contact">Contact</a>
       </nav>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </header>
 
     <!--================ HERO ================-->
 
     <section class="hero" id="home">
       <div class="hero-text">
-        <h3>Hello, I'm</h3>
 
-        <h1>Manwella Emad Maher</h1>
+  <span class="hero-eyebrow">
+    GRAPHIC DESIGNER <b>•</b> VISUAL CREATIVE
+  </span>
 
-        <h2>Graphic Designer</h2>
+  <h1>
+    Manwella
+    <span>Emad</span>
+  </h1>
 
-        <p>
-          Creating clean, creative and meaningful visual designs that
-          communicate ideas and leave a lasting impression.
-        </p>
+  <h2>
+    I create visuals<br />
+    <span>that make ideas stand out.</span>
+  </h2>
 
+  <p>
+    Graphic design, branding, advertising and visual content
+    crafted with purpose and personality.
+  </p>
         <div class="buttons">
           <a href="#projects" class="btn"> View My Work </a>
 
@@ -71,24 +90,42 @@
       </div>
 
       <div class="hero-image">
-        <img src="assets/images/Profile/profile.jpg" alt="Profile" />
+        <div class="hero-photo-frame">
+          <div class="photo-back"></div>
+
+          <span class="hero-decor decor-star decor-star-top">✦</span>
+          <span class="hero-decor decor-star decor-star-bottom">✦</span>
+
+          <img src="assets/images/Profile/profile.jpg" alt="Manwella Emad" />
+        </div>
       </div>
     </section>
 
-    <!--================ ABOUT ================-->
-
     <section id="about" class="about">
-      <h2 class="section-title">About Me</h2>
+      <div class="about-heading">
+        <!-- <span class="section-label">About Me</span> -->
 
-      <p>
-        I'm a Computer Science graduate from The Egyptian E-Learning University
-        (EELU).<br />
-        Creativity has always been my passion, and I love transforming ideas
-        into clean, engaging visual designs.<br />
-        I enjoy creating social media designs, branding, logos, posters,
-        banners, and professional photo editing using Adobe Photoshop and
-        Canva..., always focusing on creativity, simplicity, and purpose.
-      </p>
+        <h2 class="section-title">
+          A little about
+          <span>who I am.</span>
+        </h2>
+      </div>
+
+      <div class="about-content">
+        <p>
+          I'm a Computer Science graduate from The Egyptian E-Learning
+          University (EELU), with a strong passion for
+          <em>graphic design</em> and <em>visual creativity.</em>
+        </p>
+
+        <p>
+          I enjoy creating
+          <strong
+            >social media designs, branding, logos, posters, and banners</strong
+          >, along with professional <em>photo and video editing</em> using
+          Adobe Photoshop, Adobe Illustrator, Canva, and CapCut.
+        </p>
+      </div>
     </section>
 
     <!--================ EDUCATION ================-->
@@ -142,6 +179,12 @@
         </div>
 
         <div class="software-card">
+          <i class="fa-solid fa-video"></i>
+
+          <h3>CapCut</h3>
+        </div>
+
+        <div class="software-card">
           <i class="fa-solid fa-camera"></i>
 
           <h3>Lightroom</h3>
@@ -156,6 +199,8 @@
 
       <div class="skills-grid">
         <span>Photo Editing</span>
+
+        <span>Video Editing</span>
 
         <span>Typography</span>
 
@@ -175,114 +220,252 @@
       <h2 class="section-title">What I Design</h2>
 
       <div class="services-grid">
-        <div class="service">Social Media Designs</div>
+        <div class="service">
+          <i class="fa-solid fa-hashtag"></i>
+          <h3>Social Media Designs</h3>
+        </div>
 
-        <div class="service">Branding</div>
+        <div class="service">
+          <i class="fa-solid fa-shapes"></i>
+          <h3>Branding</h3>
+        </div>
 
-        <div class="service">Logo Design</div>
+        <div class="service">
+          <i class="fa-solid fa-pen-nib"></i>
+          <h3>Logo Design</h3>
+        </div>
 
-        <div class="service">Posters</div>
+        <div class="service">
+          <i class="fa-regular fa-id-card"></i>
+          <h3>Business Cards</h3>
+        </div>
 
-        <div class="service">Banners</div>
+        <div class="service">
+          <i class="fa-regular fa-image"></i>
+          <h3>Posters</h3>
+        </div>
 
-        <div class="service">YouTube Thumbnails</div>
+        <div class="service">
+          <i class="fa-solid fa-panorama"></i>
+          <h3>Banners</h3>
+        </div>
+
+        <div class="service">
+          <i class="fa-brands fa-youtube"></i>
+          <h3>YouTube Thumbnails</h3>
+        </div>
       </div>
     </section>
 
     <!--================ PROJECTS ================-->
-
     <section id="projects">
       <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
-        <div class="project">
-          <img src="assets/images/Projects/burger.png" />
 
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Burger Restaurant Social Media Ad</h3>
-              <p>Social Media Design</p>
+      <!--================ POSTERS & ADVERTISING ================-->
+      <div class="projects-category">
+        <h3 class="projects-category-title">Posters & Advertising</h3>
+
+        <div class="projects-grid">
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/burger.png"
+                alt="Burger Restaurant Social Media Ad"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Burger Restaurant Social Media Ad</h3>
+                  <p>Social Media Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/trip.png"
+                alt="Travel Promotion Campaign"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Travel Promotion Campaign</h3>
+                  <p>Social Media Campaign</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/delisious1.png"
+                alt="Food Promotion Design"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Food Promotion Design Concept</h3>
+                  <p>Food Advertisement</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Effortless glow, natural you..png"
+                alt="Skincare Campaign"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Human Hero — Skincare Campaign</h3>
+                  <p>Beauty Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/t-shirt-boy.png"
+                alt="Custom T-Shirt Mockup"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Custom T-Shirt Mockup Design</h3>
+                  <p>Apparel Mockup</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Luxury Serum.png"
+                alt="Luxury Serum Campaign"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Product Hero — Luxury Serum Campaign</h3>
+                  <p>Product Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Nike Design.png"
+                alt="Nike Product Advertisement"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Nike Product Advertisement</h3>
+                  <p>Product Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Wrestling.jpg"
+                alt="Wrestling Team Branding"
+              />
+
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Wrestling Team Branding</h3>
+                  <p>Logo & Print Design for a Client</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="project">
-          <img src="assets/images/Projects/trip.png" />
+      <!--================ BUSINESS CARDS ================-->
+      <div class="projects-category business-cards-section">
+        <h3 class="projects-category-title">Business Cards</h3>
 
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Travel Promotion Campaign</h3>
-              <p>Social Media Campaign</p>
+        <div class="business-cards-grid">
+          <!-- Business Card -->
+          <div class="business-card-project">
+            <div class="business-card-image">
+              <img
+                src="assets/images/Projects/Selora (1)/1.png"
+                alt="Business Card Front"
+                class="zoomable-image"
+              />
+
+              <div class="business-card-label">Front</div>
             </div>
-          </div>
-        </div>
 
-        <div class="project">
-          <img src="assets/images/Projects/delisious1.png" />
+            <div class="business-card-image">
+              <img
+                src="assets/images/Projects/Selora (1)/Selora (1).png"
+                alt="Business Card Back"
+                class="zoomable-image"
+              />
 
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Food Promotion Design Concept</h3>
-              <p>Food Advertisement</p>
+              <div class="business-card-label">Back</div>
             </div>
-          </div>
-        </div>
 
-        <div class="project">
-          <img src="assets/images/Projects/Effortless glow, natural you..png" />
-
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Human Hero — Skincare Campaign</h3>
-              <p>Beauty Advertising Design</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="project">
-          <img src="assets/images/Projects/t-shirt-boy.png" />
-
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Custom T-Shirt Mockup Design</h3>
-              <p>Apparel Mockup</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="project">
-          <img src="assets/images/Projects/Luxury Serum.png" />
-
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Product Hero — Luxury Serum Campaign</h3>
-              <p>Product Advertising Design</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="project">
-          <img src="assets/images/Projects/choco.png" />
-
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Chocolate Product Advertisement</h3>
-              <p>Food Advertisement</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="project">
-          <img src="assets/images/Projects/Wrestling.jpg" />
-
-          <div class="overlay">
-            <div class="project-info">
-              <h3>Wrestling Team Branding</h3>
-              <p>Logo & Print Design for a Client</p>
+            <div class="business-card-overlay">
+              <div>
+                <h3>Business Card Design</h3>
+                <p>Brand Identity for a Client</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!--================ IMAGE LIGHTBOX ================-->
+    <div class="image-lightbox" id="image-lightbox">
+      <button class="lightbox-close" id="lightbox-close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <button class="lightbox-btn lightbox-prev" id="lightbox-prev">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="Project Preview" />
+      </div>
+
+      <button class="lightbox-btn lightbox-next" id="lightbox-next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="zoom-controls">
+        <button id="zoom-out">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+
+        <button id="zoom-reset">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+
+        <button id="zoom-in">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
 
     <!--================ CONTACT ================-->
 
@@ -298,7 +481,7 @@
 
         <a href="https://wa.me/201227462327" target="_blank">
           <i class="fa-brands fa-whatsapp"></i>
-          
+
           +20 122 746 2327
         </a>
 
