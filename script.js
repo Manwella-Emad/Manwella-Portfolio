@@ -476,3 +476,33 @@ document.addEventListener("keydown", function (event) {
     zoomResetButton.click();
   }
 });
+/* ================= MOBILE MENU ================= */
+
+const menuToggle = document.getElementById("menu-toggle");
+const mainNav = document.getElementById("main-nav");
+const menuIcon = menuToggle.querySelector("i");
+
+menuToggle.addEventListener("click", () => {
+  mainNav.classList.toggle("active");
+
+  const isOpen = mainNav.classList.contains("active");
+
+  if (isOpen) {
+    menuIcon.classList.remove("fa-bars");
+    menuIcon.classList.add("fa-xmark");
+  } else {
+    menuIcon.classList.remove("fa-xmark");
+    menuIcon.classList.add("fa-bars");
+  }
+});
+
+/* Close menu after clicking a link */
+
+mainNav.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("active");
+
+    menuIcon.classList.remove("fa-xmark");
+    menuIcon.classList.add("fa-bars");
+  });
+});
