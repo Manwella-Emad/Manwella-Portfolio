@@ -1,7 +1,7 @@
 /* ================= SCROLL ANIMATIONS ================= */
 
 const animatedElements = document.querySelectorAll(
-  "section:not(.hero), .education-item, .software-card, .service, .project, .business-card-project, .skills-grid span",
+  "section:not(.hero), .education-item, .software-card, .service, .project, .business-card-project, .brand-identity-project, .skills-grid span",
 );
 
 const animatedTitles = document.querySelectorAll(
@@ -130,11 +130,16 @@ const zoomResetButton = document.getElementById("zoom-reset");
 
 /* ================= ALL PROJECT IMAGES ================= */
 
-const zoomableImages = Array.from(
-  document.querySelectorAll(".project-image img, .business-card-image img"),
+
+const allProjectImages = Array.from(
+  document.querySelectorAll(
+    ".project-image img, .business-card-image img, .brand-identity-image img"
+  )
 );
 
+let currentImageGroup = [];
 let currentImageIndex = 0;
+
 
 let zoomLevel = 1;
 
@@ -167,15 +172,32 @@ function resetImageTransform() {
 
 /* ================= OPEN IMAGE ================= */
 
-zoomableImages.forEach((image, index) => {
+
+allProjectImages.forEach((image) => {
   image.addEventListener("click", function (event) {
     event.stopPropagation();
 
-    currentImageIndex = index;
+    const brandProject = image.closest(".brand-identity-project");
+
+    if (brandProject) {
+      // Navigate only within this brand's images
+      currentImageGroup = Array.from(
+        brandProject.querySelectorAll(".brand-identity-image img")
+      );
+    } else {
+      // Keep the existing navigation for other projects
+      currentImageGroup = allProjectImages.filter(
+        (projectImage) =>
+          !projectImage.closest(".brand-identity-project")
+      );
+    }
+
+    currentImageIndex = currentImageGroup.indexOf(image);
 
     openLightbox(image.src);
   });
 });
+
 
 /* ================= OPEN LIGHTBOX ================= */
 
@@ -211,31 +233,39 @@ lightbox.addEventListener("click", function (event) {
 
 /* ================= NEXT IMAGE ================= */
 
+
 nextButton.addEventListener("click", function (event) {
   event.stopPropagation();
 
+  if (currentImageGroup.length === 0) return;
+
   currentImageIndex++;
 
-  if (currentImageIndex >= zoomableImages.length) {
+  if (currentImageIndex >= currentImageGroup.length) {
     currentImageIndex = 0;
   }
 
-  openLightbox(zoomableImages[currentImageIndex].src);
+  openLightbox(currentImageGroup[currentImageIndex].src);
 });
 
+
 /* ================= PREVIOUS IMAGE ================= */
+
 
 prevButton.addEventListener("click", function (event) {
   event.stopPropagation();
 
+  if (currentImageGroup.length === 0) return;
+
   currentImageIndex--;
 
   if (currentImageIndex < 0) {
-    currentImageIndex = zoomableImages.length - 1;
+    currentImageIndex = currentImageGroup.length - 1;
   }
 
-  openLightbox(zoomableImages[currentImageIndex].src);
+  openLightbox(currentImageGroup[currentImageIndex].src);
 });
+
 
 /* ================= ZOOM FUNCTION ================= */
 

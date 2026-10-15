@@ -2093,3 +2093,189 @@ body.dark-mode nav a.active {
   background: rgba(123, 47, 247, 0.15);
   color: #a77bff;
 }
+/* ================ BRAND IDENTITY ================ */
+
+.brand-identity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.brand-identity-project {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--card-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(123, 47, 247, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-identity-project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(123, 47, 247, 0.12);
+}
+
+
+.brand-identity-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 180px));
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.brand-identity-image {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(123, 47, 247, 0.06);
+}
+
+.brand-identity-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.brand-identity-image {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(123, 47, 247, 0.06);
+}
+
+.brand-identity-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.brand-identity-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.brand-identity-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.brand-identity-image:hover img {
+  transform: scale(1.04);
+}
+
+.brand-identity-info {
+  padding: 12px 18px 20px;
+}
+
+.brand-identity-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.brand-identity-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 480px) {
+  .brand-identity-grid {
+    grid-template-columns: 1fr;
+  }
+} 
+
+/* ================ BRAND IMAGE HOVER ================ */
+
+.brand-identity-image {
+  position: relative;
+  cursor: pointer;
+}
+
+.brand-image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.68);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.brand-identity-image:hover .brand-image-overlay {
+  opacity: 1;
+}
+
+.brand-image-overlay h3 {
+  color: #fff;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.4;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.brand-identity-image:hover .brand-image-overlay h4 {
+  transform: translateY(0);
+}
+/* ================ BRAND IDENTITY LAYOUT ================ */
+
+.brand-identity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 392px);
+  justify-content: start;
+  align-items: start;
+  gap: 25px;
+}
+
+.brand-identity-project {
+  width: 392px;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.brand-identity-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 180px));
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+@media (max-width: 480px) {
+  .brand-identity-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-identity-project {
+    width: 100%;
+  }
+
+  .brand-identity-images {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
