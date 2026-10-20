@@ -1,11 +1,7 @@
-/* ================= SCROLL ANIMATIONS ================= */
-
+/* ================= SCROLL REVEAL ================= */
+// Sections are NOT observed (very tall sections never reach the threshold); their children are.
 const animatedElements = document.querySelectorAll(
-  "section:not(.hero), .education-item, .software-card, .service, .project, .business-card-project, .brand-identity-project, .skills-grid span",
-);
-
-const animatedTitles = document.querySelectorAll(
-  ".section-title, .projects-category-title",
+  ".education-item, .service, .project, .business-card-project, .brand-identity-project, .skills-grid span, .section-title, .projects-category-title",
 );
 
 const animationObserver = new IntersectionObserver(
@@ -17,522 +13,313 @@ const animationObserver = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.12,
-  },
+  { threshold: 0.12 },
 );
 
-animatedElements.forEach((element) => {
-  element.classList.add("animate-on-scroll");
-  animationObserver.observe(element);
-});
-
-/* ================= TITLE LINE ANIMATIONS ================= */
-
-const titleLineObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("line-animate");
-        titleLineObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.5,
-  },
-);
-
-animatedTitles.forEach((title) => {
-  titleLineObserver.observe(title);
+animatedElements.forEach((el) => {
+  el.classList.add("animate-on-scroll");
+  animationObserver.observe(el);
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ================= DARK / LIGHT MODE ================= */
-
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = themeToggle.querySelector("i");
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-
-  const isDark = document.body.classList.contains("dark-mode");
-
-  if (isDark) {
-    themeIcon.classList.remove("fa-moon");
-    themeIcon.classList.add("fa-sun");
-  } else {
-    themeIcon.classList.remove("fa-sun");
-    themeIcon.classList.add("fa-moon");
-  }
-
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-});
-
-/* Keep the selected theme after refreshing */
-
-const savedTheme = localStorage.getItem("theme");
-
-if (savedTheme === "dark") {
-  document.body.classList.add("dark-mode");
-
-  themeIcon.classList.remove("fa-moon");
-  themeIcon.classList.add("fa-sun");
+function applyTheme(isDark) {
+  document.body.classList.toggle("dark-mode", isDark);
+  themeIcon.classList.toggle("fa-sun", isDark);
+  themeIcon.classList.toggle("fa-moon", !isDark);
 }
 
-/* ================= ACTIVE NAVIGATION ================= */
+themeToggle.addEventListener("click", () => {
+  const isDark = !document.body.classList.contains("dark-mode");
+  applyTheme(isDark);
+  try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch (e) {}
+});
 
+try { if (localStorage.getItem("theme") === "dark") applyTheme(true); } catch (e) {}
+
+/* ================= ACTIVE NAVIGATION ================= */
 const navLinks = document.querySelectorAll("nav a");
 const sections = document.querySelectorAll("section[id]");
 
 function updateActiveNav() {
-  const scrollPosition = window.scrollY + 150;
-
-  let currentSection = "home";
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-
-    if (
-      scrollPosition >= sectionTop &&
-      scrollPosition < sectionTop + sectionHeight
-    ) {
-      currentSection = section.id;
-    }
+  const pos = window.scrollY + 150;
+  let current = "home";
+  sections.forEach((s) => {
+    if (pos >= s.offsetTop && pos < s.offsetTop + s.offsetHeight) current = s.id;
   });
-
   navLinks.forEach((link) => {
-    link.classList.remove("active");
-
-    if (link.getAttribute("href") === `#${currentSection}`) {
-      link.classList.add("active");
-    }
+    link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
   });
 }
-
-window.addEventListener("scroll", updateActiveNav);
-
+window.addEventListener("scroll", updateActiveNav, { passive: true });
 updateActiveNav();
-/* ================= PROJECT IMAGE LIGHTBOX ================= */
 
+/* ================= LIGHTBOX ================= */
 const lightbox = document.getElementById("image-lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const closeLightbox = document.getElementById("lightbox-close");
-
 const prevButton = document.getElementById("lightbox-prev");
 const nextButton = document.getElementById("lightbox-next");
-
 const zoomInButton = document.getElementById("zoom-in");
 const zoomOutButton = document.getElementById("zoom-out");
 const zoomResetButton = document.getElementById("zoom-reset");
 
-/* ================= ALL PROJECT IMAGES ================= */
-
-
 const allProjectImages = Array.from(
-  document.querySelectorAll(
-    ".project-image img, .business-card-image img, .brand-identity-image img"
-  )
+  document.querySelectorAll(".project-image img, .business-card-image img, .brand-identity-image img"),
 );
 
 let currentImageGroup = [];
 let currentImageIndex = 0;
-
-
-let zoomLevel = 1;
-
-let translateX = 0;
-let translateY = 0;
-
-let isDragging = false;
-
-let startX = 0;
-let startY = 0;
-
-let lastTouchDistance = 0;
-
-/* ================= UPDATE IMAGE ================= */
+let zoomLevel = 1, translateX = 0, translateY = 0;
+let isDragging = false, startX = 0, startY = 0, lastTouchDistance = 0;
 
 function updateImageTransform() {
   lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
 }
-
-/* ================= RESET IMAGE ================= */
-
 function resetImageTransform() {
-  zoomLevel = 1;
-
-  translateX = 0;
-  translateY = 0;
-
+  zoomLevel = 1; translateX = 0; translateY = 0;
   updateImageTransform();
 }
-
-/* ================= OPEN IMAGE ================= */
-
+function openLightbox(src) {
+  lightboxImage.src = src;
+  resetImageTransform();
+  lightbox.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+function closeImageLightbox() {
+  lightbox.classList.remove("active");
+  document.body.style.overflow = "";
+  resetImageTransform();
+}
 
 allProjectImages.forEach((image) => {
-  image.addEventListener("click", function (event) {
+  image.addEventListener("click", (event) => {
     event.stopPropagation();
-
     const brandProject = image.closest(".brand-identity-project");
-
     if (brandProject) {
-      // Navigate only within this brand's images
-      currentImageGroup = Array.from(
-        brandProject.querySelectorAll(".brand-identity-image img")
-      );
+      currentImageGroup = Array.from(brandProject.querySelectorAll(".brand-identity-image img"));
     } else {
-      // Keep the existing navigation for other projects
       currentImageGroup = allProjectImages.filter(
-        (projectImage) =>
-          !projectImage.closest(".brand-identity-project")
+        (img) => !img.closest(".brand-identity-project") && !img.closest(".project.hide"),
       );
     }
-
     currentImageIndex = currentImageGroup.indexOf(image);
-
     openLightbox(image.src);
   });
 });
 
-
-/* ================= OPEN LIGHTBOX ================= */
-
-function openLightbox(imageSource) {
-  lightboxImage.src = imageSource;
-
-  resetImageTransform();
-
-  lightbox.classList.add("active");
-
-  document.body.style.overflow = "hidden";
-}
-
-/* ================= CLOSE LIGHTBOX ================= */
-
-function closeImageLightbox() {
-  lightbox.classList.remove("active");
-
-  document.body.style.overflow = "";
-
-  resetImageTransform();
-}
-
 closeLightbox.addEventListener("click", closeImageLightbox);
+lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeImageLightbox(); });
 
-/* ================= CLOSE ON BACKGROUND ================= */
-
-lightbox.addEventListener("click", function (event) {
-  if (event.target === lightbox) {
-    closeImageLightbox();
-  }
+nextButton.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (!currentImageGroup.length) return;
+  currentImageIndex = (currentImageIndex + 1) % currentImageGroup.length;
+  openLightbox(currentImageGroup[currentImageIndex].src);
 });
-
-/* ================= NEXT IMAGE ================= */
-
-
-nextButton.addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  if (currentImageGroup.length === 0) return;
-
-  currentImageIndex++;
-
-  if (currentImageIndex >= currentImageGroup.length) {
-    currentImageIndex = 0;
-  }
-
+prevButton.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (!currentImageGroup.length) return;
+  currentImageIndex = (currentImageIndex - 1 + currentImageGroup.length) % currentImageGroup.length;
   openLightbox(currentImageGroup[currentImageIndex].src);
 });
 
-
-/* ================= PREVIOUS IMAGE ================= */
-
-
-prevButton.addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  if (currentImageGroup.length === 0) return;
-
-  currentImageIndex--;
-
-  if (currentImageIndex < 0) {
-    currentImageIndex = currentImageGroup.length - 1;
-  }
-
-  openLightbox(currentImageGroup[currentImageIndex].src);
-});
-
-
-/* ================= ZOOM FUNCTION ================= */
-
-function zoomImage(amount, centerX = 0, centerY = 0) {
+function zoomImage(amount, cx = 0, cy = 0) {
   const oldZoom = zoomLevel;
-
-  zoomLevel += amount;
-
-  if (zoomLevel < 1) {
-    zoomLevel = 1;
-  }
-
-  if (zoomLevel > 4) {
-    zoomLevel = 4;
-  }
-
-  if (zoomLevel === 1) {
-    translateX = 0;
-    translateY = 0;
-
-    updateImageTransform();
-
-    return;
-  }
-
-  const zoomRatio = zoomLevel / oldZoom;
-
-  translateX = centerX - (centerX - translateX) * zoomRatio;
-
-  translateY = centerY - (centerY - translateY) * zoomRatio;
-
+  zoomLevel = Math.min(4, Math.max(1, zoomLevel + amount));
+  if (zoomLevel === 1) { translateX = 0; translateY = 0; updateImageTransform(); return; }
+  const ratio = zoomLevel / oldZoom;
+  translateX = cx - (cx - translateX) * ratio;
+  translateY = cy - (cy - translateY) * ratio;
   updateImageTransform();
 }
 
-/* ================= BUTTON ZOOM IN ================= */
+zoomInButton.addEventListener("click", (e) => { e.stopPropagation(); zoomImage(0.25); });
+zoomOutButton.addEventListener("click", (e) => { e.stopPropagation(); zoomImage(-0.25); });
+zoomResetButton.addEventListener("click", (e) => { e.stopPropagation(); resetImageTransform(); });
 
-zoomInButton.addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  zoomImage(0.25);
+lightboxImage.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const r = lightboxImage.getBoundingClientRect();
+  zoomImage(e.deltaY < 0 ? 0.2 : -0.2, e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
 });
 
-/* ================= BUTTON ZOOM OUT ================= */
-
-zoomOutButton.addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  zoomImage(-0.25);
-});
-
-/* ================= RESET ZOOM ================= */
-
-zoomResetButton.addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  resetImageTransform();
-});
-
-/* ================= MOUSE WHEEL ZOOM ================= */
-
-lightboxImage.addEventListener("wheel", function (event) {
-  event.preventDefault();
-
-  const rect = lightboxImage.getBoundingClientRect();
-
-  const mouseX = event.clientX - (rect.left + rect.width / 2);
-
-  const mouseY = event.clientY - (rect.top + rect.height / 2);
-
-  const zoomAmount = event.deltaY < 0 ? 0.2 : -0.2;
-
-  zoomImage(zoomAmount, mouseX, mouseY);
-});
-
-/* ================= MOUSE DRAG ================= */
-
-lightboxImage.addEventListener("mousedown", function (event) {
-  if (zoomLevel <= 1) {
-    return;
-  }
-
-  event.preventDefault();
-
+lightboxImage.addEventListener("mousedown", (e) => {
+  if (zoomLevel <= 1) return;
+  e.preventDefault();
   isDragging = true;
-
-  startX = event.clientX - translateX;
-  startY = event.clientY - translateY;
-
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
   lightboxImage.style.cursor = "grabbing";
 });
-
-document.addEventListener("mousemove", function (event) {
-  if (!isDragging) {
-    return;
-  }
-
-  translateX = event.clientX - startX;
-  translateY = event.clientY - startY;
-
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
   updateImageTransform();
 });
-
-document.addEventListener("mouseup", function () {
+document.addEventListener("mouseup", () => {
   isDragging = false;
-
   lightboxImage.style.cursor = "grab";
 });
 
-/* ================= TOUCH HELPERS ================= */
+const touchDistance = (a, b) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
 
-function getTouchDistance(touch1, touch2) {
-  const dx = touch1.clientX - touch2.clientX;
+lightboxImage.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  if (e.touches.length === 2) { lastTouchDistance = touchDistance(e.touches[0], e.touches[1]); return; }
+  if (e.touches.length === 1 && zoomLevel > 1) {
+    startX = e.touches[0].clientX - translateX;
+    startY = e.touches[0].clientY - translateY;
+  }
+}, { passive: false });
 
-  const dy = touch1.clientY - touch2.clientY;
-
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-/* ================= TOUCH START ================= */
-
-lightboxImage.addEventListener(
-  "touchstart",
-  function (event) {
-    event.preventDefault();
-
-    if (event.touches.length === 2) {
-      lastTouchDistance = getTouchDistance(event.touches[0], event.touches[1]);
-
-      return;
-    }
-
-    if (event.touches.length === 1 && zoomLevel > 1) {
-      startX = event.touches[0].clientX - translateX;
-
-      startY = event.touches[0].clientY - translateY;
-    }
-  },
-  { passive: false },
-);
-
-/* ================= TOUCH MOVE ================= */
-
-lightboxImage.addEventListener(
-  "touchmove",
-  function (event) {
-    event.preventDefault();
-
-    if (event.touches.length === 2) {
-      const currentDistance = getTouchDistance(
-        event.touches[0],
-        event.touches[1],
-      );
-
-      if (lastTouchDistance > 0) {
-        const difference = currentDistance - lastTouchDistance;
-
-        const zoomAmount = difference * 0.005;
-
-        zoomLevel += zoomAmount;
-
-        if (zoomLevel < 1) {
-          zoomLevel = 1;
-        }
-
-        if (zoomLevel > 4) {
-          zoomLevel = 4;
-        }
-
-        if (zoomLevel === 1) {
-          translateX = 0;
-          translateY = 0;
-        }
-
-        updateImageTransform();
-      }
-
-      lastTouchDistance = currentDistance;
-
-      return;
-    }
-
-    if (event.touches.length === 1 && zoomLevel > 1) {
-      translateX = event.touches[0].clientX - startX;
-
-      translateY = event.touches[0].clientY - startY;
-
+lightboxImage.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  if (e.touches.length === 2) {
+    const d = touchDistance(e.touches[0], e.touches[1]);
+    if (lastTouchDistance > 0) {
+      zoomLevel = Math.min(4, Math.max(1, zoomLevel + (d - lastTouchDistance) * 0.005));
+      if (zoomLevel === 1) { translateX = 0; translateY = 0; }
       updateImageTransform();
     }
-  },
-  { passive: false },
-);
-
-/* ================= TOUCH END ================= */
-
-lightboxImage.addEventListener(
-  "touchend",
-  function () {
-    if (zoomLevel === 1) {
-      translateX = 0;
-      translateY = 0;
-
-      updateImageTransform();
-    }
-
-    lastTouchDistance = 0;
-  },
-  { passive: false },
-);
-
-/* ================= KEYBOARD CONTROLS ================= */
-
-document.addEventListener("keydown", function (event) {
-  if (!lightbox.classList.contains("active")) {
+    lastTouchDistance = d;
     return;
   }
-
-  if (event.key === "Escape") {
-    closeImageLightbox();
+  if (e.touches.length === 1 && zoomLevel > 1) {
+    translateX = e.touches[0].clientX - startX;
+    translateY = e.touches[0].clientY - startY;
+    updateImageTransform();
   }
+}, { passive: false });
 
-  if (event.key === "ArrowRight") {
-    nextButton.click();
-  }
+lightboxImage.addEventListener("touchend", () => {
+  if (zoomLevel === 1) { translateX = 0; translateY = 0; updateImageTransform(); }
+  lastTouchDistance = 0;
+}, { passive: false });
 
-  if (event.key === "ArrowLeft") {
-    prevButton.click();
-  }
-
-  if (event.key === "+" || event.key === "=") {
-    zoomInButton.click();
-  }
-
-  if (event.key === "-") {
-    zoomOutButton.click();
-  }
-
-  if (event.key === "0") {
-    zoomResetButton.click();
-  }
+document.addEventListener("keydown", (e) => {
+  if (!lightbox.classList.contains("active")) return;
+  if (e.key === "Escape") closeImageLightbox();
+  if (e.key === "ArrowRight") nextButton.click();
+  if (e.key === "ArrowLeft") prevButton.click();
+  if (e.key === "+" || e.key === "=") zoomInButton.click();
+  if (e.key === "-") zoomOutButton.click();
+  if (e.key === "0") zoomResetButton.click();
 });
-/* ================= MOBILE MENU ================= */
 
+/* ================= MOBILE MENU ================= */
 const menuToggle = document.getElementById("menu-toggle");
 const mainNav = document.getElementById("main-nav");
 const menuIcon = menuToggle.querySelector("i");
 
-menuToggle.addEventListener("click", () => {
-  mainNav.classList.toggle("active");
+function setMenu(open) {
+  mainNav.classList.toggle("active", open);
+  menuIcon.classList.toggle("fa-xmark", open);
+  menuIcon.classList.toggle("fa-bars", !open);
+}
+menuToggle.addEventListener("click", () => setMenu(!mainNav.classList.contains("active")));
+mainNav.querySelectorAll("a").forEach((l) => l.addEventListener("click", () => setMenu(false)));
 
-  const isOpen = mainNav.classList.contains("active");
+/* ================= POSTER FILTERS ================= */
+const chips = document.querySelectorAll(".chip");
+const posts = document.querySelectorAll(".project");
 
-  if (isOpen) {
-    menuIcon.classList.remove("fa-bars");
-    menuIcon.classList.add("fa-xmark");
-  } else {
-    menuIcon.classList.remove("fa-xmark");
-    menuIcon.classList.add("fa-bars");
-  }
-});
+chips.forEach((chip) =>
+  chip.addEventListener("click", () => {
+    chips.forEach((c) => c.classList.remove("active"));
+    chip.classList.add("active");
+    posts.forEach((p) => {
+      const show = chip.dataset.f === "all" || p.dataset.cat === chip.dataset.f;
+      p.classList.toggle("hide", !show);
+      if (show) {
+        p.classList.add("show");
+        p.classList.remove("pop");
+        void p.offsetWidth;
+        p.classList.add("pop");
+      }
+    });
+  }),
+);
 
-/* Close menu after clicking a link */
+/* ================= LAZY IMAGES ================= */
+document
+  .querySelectorAll(".project img, .brand-identity-image img, .business-card-image img")
+  .forEach((img) => { img.loading = "lazy"; img.decoding = "async"; });
 
-mainNav.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    mainNav.classList.remove("active");
+/* ================= CREATIVE EFFECTS ================= */
+const root = document.documentElement;
+const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+const reduceMotion = matchMedia("(prefers-reduced-motion:reduce)").matches;
+const fx = document.querySelector(".bg-fx");
+const bar = document.querySelector(".progress");
 
-    menuIcon.classList.remove("fa-xmark");
-    menuIcon.classList.add("fa-bars");
+function onScrollFx() {
+  const max = root.scrollHeight - innerHeight;
+  fx.style.setProperty("--sy", scrollY);
+  bar.style.setProperty("--p", max > 0 ? scrollY / max : 0);
+}
+addEventListener("scroll", onScrollFx, { passive: true });
+onScrollFx();
+
+if (fine && !reduceMotion) {
+  /* background parallax */
+  addEventListener("mousemove", (e) => {
+    fx.style.setProperty("--mx", (e.clientX / innerWidth - 0.5) * 2);
+    fx.style.setProperty("--my", (e.clientY / innerHeight - 0.5) * 2);
   });
-});
+
+  /* custom cursor */
+  const cursor = document.querySelector(".cursor");
+  const dot = document.querySelector(".cursor-dot");
+  let cx = 0, cy = 0, tx = 0, ty = 0;
+
+  addEventListener("mousemove", (e) => {
+    tx = e.clientX; ty = e.clientY;
+    dot.style.transform = `translate(${tx}px, ${ty}px)`;
+    cursor.classList.add("on");
+    dot.classList.add("on");
+  });
+  document.addEventListener("mouseleave", () => {
+    cursor.classList.remove("on", "big");
+    dot.classList.remove("on");
+  });
+  (function loop() {
+    cx += (tx - cx) * 0.5;
+    cy += (ty - cy) * 0.5;
+    cursor.style.transform = `translate(${cx}px, ${cy}px)`;
+    requestAnimationFrame(loop);
+  })();
+
+  document.addEventListener("mouseover", (e) => {
+    const t = e.target;
+    const big = !!t.closest(
+      "a, button, .chip, .project, .brand-identity-image, .business-card-project, .tool-card, .education-item, .service, .skills-grid span, .photo, .avail",
+    );
+    cursor.classList.toggle("big", big);
+  });
+
+  /* magnetic buttons */
+  document.querySelectorAll(".btn, .btn-outline, .contact-links a, .theme-toggle").forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.translate = `${(e.clientX - r.left - r.width / 2) * 0.25}px ${(e.clientY - r.top - r.height / 2) * 0.35}px`;
+    });
+    el.addEventListener("mouseleave", () => (el.style.translate = ""));
+  });
+
+  /* 3D tilt on tool cards + posters */
+  document.querySelectorAll(".tool-card, .project-image").forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `perspective(800px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
+    });
+    el.addEventListener("mouseleave", () => (el.style.transform = ""));
+  });
+}
