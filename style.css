@@ -133,7 +133,6 @@ nav a.active{background:var(--ink);color:var(--bg)}
 .service h3{font-family:var(--serif);font-size:21px;line-height:1.25}
 .service:hover{box-shadow:var(--shadow)}
 
-
 /* ----- Shared cute-card effect: tilt + gentle bob + shine sweep + scale on hover ----- */
 .education-item,.service,.skills-grid span{position:relative;overflow:hidden;rotate:var(--r,0deg);animation:bob2 5s ease-in-out infinite;animation-delay:var(--d,0s)}
 .education-item:nth-child(3n+1),.service:nth-child(3n+1),.skills-grid span:nth-child(3n+1){--r:-1.5deg;--d:0s}
@@ -149,11 +148,18 @@ nav a.active{background:var(--ink);color:var(--bg)}
 .projects-category-title{font-family:var(--serif);font-size:30px;margin-bottom:26px;display:flex;align-items:center;gap:16px}
 .projects-category-title::after{content:"";flex:1;height:1px;background:var(--line)}
 
+/* Brand identity slider (images keep their natural size, no frame) */
 .brand-identity-project{background:var(--pink2);border-radius:34px;padding:22px}
-.brand-identity-images{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.brand-identity-image{position:relative;overflow:hidden;border-radius:22px;background:var(--card);cursor:pointer}
-.brand-identity-image img{width:100%;height:100%;display:block;object-fit:contain;transition:transform .5s}
+.brand-slider{position:relative}
+.brand-identity-images{display:flex;align-items:center;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.brand-identity-images::-webkit-scrollbar{display:none}
+.brand-identity-image{position:relative;overflow:hidden;border-radius:22px;background:transparent;cursor:pointer;flex:0 0 auto;height:clamp(240px,28vw,380px);scroll-snap-align:start}
+.brand-identity-image img{height:100%;width:auto;display:block;transition:transform .5s}
 .brand-identity-image:hover img{transform:scale(1.05)}
+.slider-btn{position:absolute;top:50%;translate:0 -50%;z-index:5;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:.3s}
+.slider-btn.prev{left:-12px}.slider-btn.next{right:-12px}
+.slider-btn:hover{background:var(--pink)}
+.slider-btn:disabled{opacity:0;pointer-events:none}
 .brand-image-overlay,.overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;opacity:0;transition:opacity .35s;pointer-events:none;background:linear-gradient(transparent 40%,rgba(59,42,36,.82))}
 .brand-identity-image:hover .brand-image-overlay,.project:hover .overlay{opacity:1}
 .brand-image-overlay h3{color:#fff6ec;font-family:var(--serif);font-size:19px}
@@ -253,7 +259,8 @@ footer{padding:30px;text-align:center;background:var(--brown);color:#fff6ec;font
   .avail{width:84px;height:84px;font-size:11px}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .projects-grid{grid-template-columns:1fr}
-  .brand-identity-images{grid-template-columns:repeat(2,1fr)}
+  .brand-identity-image{height:clamp(200px,52vw,300px)}
+  .slider-btn{width:40px;height:40px}.slider-btn.prev{left:-6px}.slider-btn.next{right:-6px}
   .business-card-project{grid-template-columns:1fr;padding:14px}.business-card-overlay{inset:14px}
   .image-lightbox{padding:55px 15px 80px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{top:15px;right:15px}
   .aurora{filter:blur(50px)}.a3{display:none}

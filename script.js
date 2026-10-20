@@ -247,8 +247,9 @@ chips.forEach((chip) =>
 );
 
 /* ================= LAZY IMAGES ================= */
+// Brand slider images are NOT lazy: their width depends on the loaded image.
 document
-  .querySelectorAll(".project img, .brand-identity-image img, .business-card-image img")
+  .querySelectorAll(".project img, .business-card-image img")
   .forEach((img) => { img.loading = "lazy"; img.decoding = "async"; });
 
 /* ================= CREATIVE EFFECTS ================= */
@@ -323,3 +324,26 @@ if (fine && !reduceMotion) {
     el.addEventListener("mouseleave", () => (el.style.transform = ""));
   });
 }
+
+/* ================= BRAND SLIDER ================= */
+const brandTrack = document.getElementById("brand-track");
+const brandPrev = document.getElementById("brand-prev");
+const brandNext = document.getElementById("brand-next");
+
+function brandStep() {
+  const items = [...brandTrack.querySelectorAll(".brand-identity-image")];
+  const left = brandTrack.getBoundingClientRect().left;
+  const first = items.find((i) => i.getBoundingClientRect().right > left + 10);
+  return first ? first.offsetWidth + 14 : brandTrack.clientWidth / 2;
+}
+function updateBrandArrows() {
+  brandPrev.disabled = brandTrack.scrollLeft <= 2;
+  brandNext.disabled =
+    brandTrack.scrollLeft + brandTrack.clientWidth >= brandTrack.scrollWidth - 2;
+}
+brandPrev.addEventListener("click", () => brandTrack.scrollBy({ left: -brandStep() }));
+brandNext.addEventListener("click", () => brandTrack.scrollBy({ left: brandStep() }));
+brandTrack.addEventListener("scroll", updateBrandArrows, { passive: true });
+addEventListener("resize", updateBrandArrows);
+brandTrack.querySelectorAll("img").forEach((img) => img.addEventListener("load", updateBrandArrows));
+updateBrandArrows();
