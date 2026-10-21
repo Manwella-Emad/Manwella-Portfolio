@@ -1,223 +1,575 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manwella Emad | Graphic Designer</title>
-<meta name="description" content="Manwella Emad: graphic designer specializing in branding, social media design and posters.">
-<meta property="og:title" content="Manwella Emad | Graphic Designer">
-<meta property="og:description" content="Branding, posters and social media design.">
-<meta property="og:image" content="https://manwella-emad.github.io/Manwella-Portfolio/assets/images/Profile/Profile2.jpg">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="progress"></div>
-<div class="cursor"></div>
-<div class="cursor-dot"></div>
-<div class="bg-fx" aria-hidden="true">
-  <i class="aurora a1"></i><i class="aurora a2"></i><i class="aurora a3"></i>
-  <span class="doodle" style="--x:6%;--y:18%;--sp:1;--col:var(--pink)">✦</span>
-  <span class="doodle" style="--x:90%;--y:12%;--sp:-1.4;--col:var(--sage);--sz:46px">✺</span>
-  <span class="doodle" style="--x:82%;--y:72%;--sp:.8;--col:var(--brown);--sz:28px">✿</span>
-  <span class="doodle" style="--x:4%;--y:78%;--sp:-.7;--col:var(--sage);--sz:40px">＋</span>
-  <span class="doodle" style="--x:48%;--y:90%;--sp:1.2;--col:var(--pink);--sz:30px">✦</span>
-</div>
-
-<header id="navbar">
-  <a href="#home" class="logo">Manwella <span>Emad</span></a>
-  <nav id="main-nav">
-    <a href="#home" class="active">Home</a>
-    <a href="#about">About</a>
-    <a href="#education">Education</a>
-    <a href="#tools">Tools</a>
-    <a href="#skills">Skills</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Work</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="header-actions">
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
-  </div>
-</header>
-
-<!--================ HERO ================-->
-<section class="hero" id="home">
-  <div class="hero-text">
-    <span class="hero-eyebrow">Graphic designer &amp; visual creative</span>
-    <h1>Manwella <em>Emad</em></h1>
-    <h2>I create visuals that make ideas stand out.</h2>
-    <p>Graphic design, branding, advertising and visual content crafted with purpose and personality.</p>
-    <div class="buttons">
-      <a href="#projects" class="btn">View My Work</a>
-      <a href="assets/cv/Manwella_Emad_Graphic_Design_CV.pdf" class="btn-outline" download>Download CV</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manwella Emad | Graphic Designer</title>
+    <meta
+      name="description"
+      content="Manwella Emad: graphic designer specializing in branding, social media design and posters."
+    />
+    <meta property="og:title" content="Manwella Emad | Graphic Designer" />
+    <meta
+      property="og:description"
+      content="Branding, posters and social media design."
+    />
+    <meta
+      property="og:image"
+      content="https://manwella-emad.github.io/Manwella-Portfolio/assets/images/Profile/Profile2.jpg"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="progress"></div>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    <div class="bg-fx" aria-hidden="true">
+      <i class="aurora a1"></i><i class="aurora a2"></i
+      ><i class="aurora a3"></i>
+      <span
+        class="doodle"
+        style="--x: 6%; --y: 18%; --sp: 1; --col: var(--pink)"
+        >✦</span
+      >
+      <span
+        class="doodle"
+        style="--x: 90%; --y: 12%; --sp: -1.4; --col: var(--sage); --sz: 46px"
+        >✺</span
+      >
+      <span
+        class="doodle"
+        style="--x: 82%; --y: 72%; --sp: 0.8; --col: var(--brown); --sz: 28px"
+        >✿</span
+      >
+      <span
+        class="doodle"
+        style="--x: 4%; --y: 78%; --sp: -0.7; --col: var(--sage); --sz: 40px"
+        >＋</span
+      >
+      <span
+        class="doodle"
+        style="--x: 48%; --y: 90%; --sp: 1.2; --col: var(--pink); --sz: 30px"
+        >✦</span
+      >
     </div>
-  </div>
 
-  <div class="hero-image">
-    <div class="stage">
-      <div class="blob"></div>
-      <div class="dash-ring"></div>
-      <svg class="text-ring" viewBox="0 0 200 200" aria-hidden="true">
-        <defs><path id="circ" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
-        <text><textPath href="#circ">GRAPHIC DESIGN ✦ BRANDING ✦ POSTERS ✦ SOCIAL MEDIA ✦ LOGOS ✦</textPath></text>
-      </svg>
-      <div class="photo"><img src="assets/images/Profile/Profile2.jpg" alt="Manwella Emad"></div>
-
-      <div class="orbit" aria-hidden="true">
-        <div class="tool" style="--a:0deg"><div class="tool-in" style="--a:0deg"><b class="badge b1" title="Photoshop">Ps</b></div></div>
-        <div class="tool" style="--a:90deg"><div class="tool-in" style="--a:90deg"><b class="badge b2" title="Illustrator">Ai</b></div></div>
-        <div class="tool" style="--a:180deg"><div class="tool-in" style="--a:180deg"><b class="badge b3" title="Canva">Ca</b></div></div>
-        <div class="tool" style="--a:270deg"><div class="tool-in" style="--a:270deg"><b class="badge b4" title="CapCut">Cc</b></div></div>
+    <header id="navbar">
+      <a href="#home" class="logo">Manwella <span>Emad</span></a>
+      <nav id="main-nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#tools">Tools</a>
+        <a href="#skills">Skills</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
-      <span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✦</span>
-      <a class="avail" href="https://wa.me/201227462327" target="_blank">Available<br>for work ✦</a>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!--================ ABOUT ================-->
-<section id="about" class="about">
-  <h2 class="section-title">A little about <em>who I am.</em></h2>
-  <div class="about-content">
-    <p>I'm a Computer Science graduate from The Egyptian E-Learning University (EELU), with a strong passion for <em>graphic design</em> and <em>visual creativity.</em></p>
-    <p>I enjoy creating <strong>social media designs, branding, logos, posters, and banners</strong>, along with professional <em>photo and video editing</em> using Adobe Photoshop, Adobe Illustrator, Canva, and CapCut.</p>
-  </div>
-</section>
+    <!--================ HERO ================-->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <span class="hero-eyebrow">Graphic designer &amp; visual creative</span>
+        <h1>Manwella <em>Emad</em></h1>
+        <h2>I create visuals that make ideas stand out.</h2>
+        <p>
+          Graphic design, branding, advertising and visual content crafted with
+          purpose and personality.
+        </p>
+        <div class="buttons">
+          <a href="#projects" class="btn">View My Work</a>
+          <a
+            href="assets/cv/Manwella_Emad_Graphic_Design_CV.pdf"
+            class="btn-outline"
+            download
+            >Download CV</a
+          >
+        </div>
+      </div>
 
-<!--================ EDUCATION ================-->
-<section id="education">
-  <h2 class="section-title">Education</h2>
-  <div class="education-grid">
-    <div class="education-item"><h3>Bachelor of Computer Science</h3><p>The Egyptian E-Learning University (EELU)</p></div>
-    <div class="education-item"><h3>Graphic Design Camp</h3><p>Creativa • 2025</p></div>
-    <div class="education-item"><h3>Digital Egypt Pioneers Initiative (DEPI)</h3><p>Full Stack .NET Track<br>Nov 2025 – Apr 2026</p></div>
-  </div>
-</section>
+      <div class="hero-image">
+        <div class="stage">
+          <div class="blob"></div>
+          <div class="dash-ring"></div>
+          <svg class="text-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <path
+                id="circ"
+                d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"
+              />
+            </defs>
+            <text>
+              <textPath href="#circ">
+                GRAPHIC DESIGN ✦ BRANDING ✦ POSTERS ✦ SOCIAL MEDIA ✦ LOGOS ✦
+              </textPath>
+            </text>
+          </svg>
+          <div class="photo">
+            <img src="assets/images/Profile/Profile2.jpg" alt="Manwella Emad" />
+          </div>
 
-<!--================ TOOLS ================-->
-<section id="tools" class="tools">
-  <h2 class="section-title">My <em>toolbox</em></h2>
-  <div class="tools-grid">
-    <div class="tool-card" style="--r:-3deg;--d:0s"><b class="tbadge b1">Ps</b><h3>Adobe Photoshop</h3><p>Photo editing &amp; manipulation</p></div>
-    <div class="tool-card" style="--r:2deg;--d:-1.2s"><b class="tbadge b2">Ai</b><h3>Adobe Illustrator</h3><p>Logos &amp; vector artwork</p></div>
-    <div class="tool-card" style="--r:-1.5deg;--d:-2.4s"><b class="tbadge b3">Ca</b><h3>Canva</h3><p>Social media &amp; quick layouts</p></div>
-    <div class="tool-card" style="--r:3deg;--d:-3.6s"><b class="tbadge b4">Cc</b><h3>CapCut</h3><p>Video editing &amp; reels</p></div>
-  </div>
-</section>
+          <div class="orbit" aria-hidden="true">
+            <div class="tool" style="--a: 0deg">
+              <div class="tool-in" style="--a: 0deg">
+                <b class="badge b1" title="Photoshop">Ps</b>
+              </div>
+            </div>
+            <div class="tool" style="--a: 90deg">
+              <div class="tool-in" style="--a: 90deg">
+                <b class="badge b2" title="Illustrator">Ai</b>
+              </div>
+            </div>
+            <div class="tool" style="--a: 180deg">
+              <div class="tool-in" style="--a: 180deg">
+                <b class="badge b3" title="Canva">Ca</b>
+              </div>
+            </div>
+            <div class="tool" style="--a: 270deg">
+              <div class="tool-in" style="--a: 270deg">
+                <b class="badge b4" title="CapCut">Cc</b>
+              </div>
+            </div>
+          </div>
+          <span class="spark s1">✦</span><span class="spark s2">✦</span
+          ><span class="spark s3">✦</span>
+          <a class="avail" href="https://wa.me/201227462327" target="_blank"
+            >Available<br />for work ✦</a
+          >
+        </div>
+      </div>
+    </section>
 
-<!--================ SKILLS ================-->
-<section id="skills" class="skills">
-  <h2 class="section-title">Skills</h2>
-  <div class="skills-grid">
-    <span>Photo Editing</span><span>Video Editing</span><span>Typography</span><span>Color Theory</span><span>Layout Design</span><span>Creative Thinking</span><span>Brand Identity</span>
-  </div>
-</section>
+    <!--================ ABOUT ================-->
+    <section id="about" class="about">
+      <h2 class="section-title">A little about <em>who I am.</em></h2>
+      <div class="about-content">
+        <p>
+          I'm a Computer Science graduate from The Egyptian E-Learning
+          University (EELU), with a strong passion for
+          <em>graphic design</em> and <em>visual creativity.</em>
+        </p>
+        <p>
+          I enjoy creating
+          <strong
+            >social media designs, branding, logos, posters, and banners</strong
+          >, along with professional <em>photo and video editing</em> using
+          Adobe Photoshop, Adobe Illustrator, Canva, and CapCut.
+        </p>
+      </div>
+    </section>
 
-<!--================ SERVICES ================-->
-<section id="services">
-  <h2 class="section-title">What I <em>design</em></h2>
-  <div class="services-grid">
-    <div class="service"><i class="fa-solid fa-hashtag"></i><h3>Social Media Designs</h3></div>
-    <div class="service"><i class="fa-solid fa-shapes"></i><h3>Branding</h3></div>
-    <div class="service"><i class="fa-solid fa-pen-nib"></i><h3>Logo Design</h3></div>
-    <div class="service"><i class="fa-regular fa-id-card"></i><h3>Business Cards</h3></div>
-    <div class="service"><i class="fa-regular fa-image"></i><h3>Posters</h3></div>
-    <div class="service"><i class="fa-solid fa-panorama"></i><h3>Banners</h3></div>
-    <div class="service"><i class="fa-brands fa-youtube"></i><h3>YouTube Thumbnails</h3></div>
-  </div>
-</section>
+    <!--================ EDUCATION ================-->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="education-grid">
+        <div class="education-item">
+          <h3>Bachelor of Computer Science</h3>
+          <p>The Egyptian E-Learning University (EELU)</p>
+        </div>
+        <div class="education-item">
+          <h3>Graphic Design Camp</h3>
+          <p>Creativa • 2025</p>
+        </div>
+        <div class="education-item">
+          <h3>Digital Egypt Pioneers Initiative (DEPI)</h3>
+          <p>Full Stack .NET Track<br />Nov 2025 – Apr 2026</p>
+        </div>
+      </div>
+    </section>
 
-<!--================ PROJECTS ================-->
-<section id="projects">
-  <h2 class="section-title">Selected <em>work</em></h2>
+    <!--================ TOOLS ================-->
+    <section id="tools" class="tools">
+      <h2 class="section-title">My <em>toolbox</em></h2>
+      <div class="tools-grid">
+        <div class="tool-card" style="--r: -3deg; --d: 0s">
+          <b class="tbadge b1">Ps</b>
+          <h3>Adobe Photoshop</h3>
+          <p>Photo editing &amp; manipulation</p>
+        </div>
+        <div class="tool-card" style="--r: 2deg; --d: -1.2s">
+          <b class="tbadge b2">Ai</b>
+          <h3>Adobe Illustrator</h3>
+          <p>Logos &amp; vector artwork</p>
+        </div>
+        <div class="tool-card" style="--r: -1.5deg; --d: -2.4s">
+          <b class="tbadge b3">Ca</b>
+          <h3>Canva</h3>
+          <p>Social media &amp; quick layouts</p>
+        </div>
+        <div class="tool-card" style="--r: 3deg; --d: -3.6s">
+          <b class="tbadge b4">Cc</b>
+          <h3>CapCut</h3>
+          <p>Video editing &amp; reels</p>
+        </div>
+      </div>
+    </section>
 
-  <div class="projects-category">
-    <h3 class="projects-category-title">Brand Identity</h3>
-    <div class="brand-identity-grid">
-      <div class="brand-identity-project">
-        <div class="brand-slider">
-  <button class="slider-btn prev" id="brand-prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
-  <div class="brand-identity-images" id="brand-track">
-    <div class="brand-identity-image"><img src="assets\images\Projects\Brand Identity\Mockup zoom.png" alt="Brand Mockup"><div class="brand-image-overlay"><h3>Brand Mockup</h3></div></div>
-    <div class="brand-identity-image"><img src="assets/images/Projects/Brand Identity/Matcha-01.png" alt="Mascot Illustration"><div class="brand-image-overlay"><h3>Mascot Illustration</h3></div></div>
-    <div class="brand-identity-image"><img src="assets/images/Projects/Brand Identity/Matcha-02.png" alt="Primary Logo"><div class="brand-image-overlay"><h3>Primary Logo</h3></div></div>
-    <div class="brand-identity-image"><img src="assets/images/Projects/Brand Identity/Matcha-03.png" alt="Submark Logo"><div class="brand-image-overlay"><h3>Submark Logo</h3></div></div>
-    <div class="brand-identity-image"><img src="assets/images/Projects/Brand Identity/Matcha-04.png" alt="Promotional Poster"><div class="brand-image-overlay"><h3>Promotional Poster</h3></div></div>
-  </div>
-  <button class="slider-btn next" id="brand-next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
-</div>
-        <div class="brand-identity-info"><h3>Matcha Mellow</h3><p>Visual Identity • Logo Design • Packaging Design</p></div>
+    <!--================ SKILLS ================-->
+    <section id="skills" class="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <span>Photo Editing</span><span>Video Editing</span
+        ><span>Typography</span><span>Color Theory</span
+        ><span>Layout Design</span><span>Creative Thinking</span
+        ><span>Brand Identity</span>
+      </div>
+    </section>
+
+    <!--================ SERVICES ================-->
+    <section id="services">
+      <h2 class="section-title">What I <em>design</em></h2>
+      <div class="services-grid">
+        <div class="service">
+          <i class="fa-solid fa-hashtag"></i>
+          <h3>Social Media Designs</h3>
+        </div>
+        <div class="service">
+          <i class="fa-solid fa-shapes"></i>
+          <h3>Branding</h3>
+        </div>
+        <div class="service">
+          <i class="fa-solid fa-pen-nib"></i>
+          <h3>Logo Design</h3>
+        </div>
+        <div class="service">
+          <i class="fa-regular fa-id-card"></i>
+          <h3>Business Cards</h3>
+        </div>
+        <div class="service">
+          <i class="fa-regular fa-image"></i>
+          <h3>Posters</h3>
+        </div>
+        <div class="service">
+          <i class="fa-solid fa-panorama"></i>
+          <h3>Banners</h3>
+        </div>
+        <div class="service">
+          <i class="fa-brands fa-youtube"></i>
+          <h3>YouTube Thumbnails</h3>
+        </div>
+      </div>
+    </section>
+
+    <!--================ PROJECTS ================-->
+    <section id="projects">
+      <h2 class="section-title">Selected <em>work</em></h2>
+
+      <div class="projects-category">
+        <h3 class="projects-category-title">Brand Identity</h3>
+        <div class="brand-identity-grid">
+          <div class="brand-identity-project">
+            <div class="brand-slider">
+              <button
+                class="slider-btn prev"
+                id="brand-prev"
+                aria-label="Previous image"
+              >
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <div class="brand-identity-images" id="brand-track">
+                <div class="brand-identity-image">
+                  <img
+                    src="assets\images\Projects\Brand Identity\Mockup zoom.png"
+                    alt="Brand Mockup"
+                  />
+                  <div class="brand-image-overlay"><h3>Brand Mockup</h3></div>
+                </div>
+                <div class="brand-identity-image">
+                  <img
+                    src="assets/images/Projects/Brand Identity/Matcha-01.png"
+                    alt="Mascot Illustration"
+                  />
+                  <div class="brand-image-overlay">
+                    <h3>Mascot Illustration</h3>
+                  </div>
+                </div>
+                <div class="brand-identity-image">
+                  <img
+                    src="assets/images/Projects/Brand Identity/Matcha-02.png"
+                    alt="Primary Logo"
+                  />
+                  <div class="brand-image-overlay"><h3>Primary Logo</h3></div>
+                </div>
+                <div class="brand-identity-image">
+                  <img
+                    src="assets/images/Projects/Brand Identity/Matcha-03.png"
+                    alt="Submark Logo"
+                  />
+                  <div class="brand-image-overlay"><h3>Submark Logo</h3></div>
+                </div>
+                <div class="brand-identity-image">
+                  <img
+                    src="assets/images/Projects/Brand Identity/Matcha-04.png"
+                    alt="Promotional Poster"
+                  />
+                  <div class="brand-image-overlay">
+                    <h3>Promotional Poster</h3>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="slider-btn next"
+                id="brand-next"
+                aria-label="Next image"
+              >
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+            <div class="brand-identity-info">
+              <h3>Matcha Mellow</h3>
+              <p>Visual Identity • Logo Design • Packaging Design</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-category">
+        <h3 class="projects-category-title">Posters &amp; Advertising</h3>
+        <div class="filters">
+          <button class="chip active" data-f="all">All</button>
+          <button class="chip" data-f="social">Social Media</button>
+          <button class="chip" data-f="beauty">Beauty &amp; Fashion</button>
+          <button class="chip" data-f="product">Product</button>
+          <button class="chip" data-f="logo">Logo Design</button>
+        </div>
+        <div class="projects-grid">
+          <div class="project" data-cat="social">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/White Rabbit.png"
+                alt="White Rabbit Concept Poster"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>White Rabbit — Concept Poster</h3>
+                  <p>Personal concept inspired by the song "White Rabbit" by Jefferson Airplane</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="product">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Nike Design.png"
+                alt="Nike Product Advertisement"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Nike Product Advertisement</h3>
+                  <p>Product Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="social">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/lemonade.png"
+                alt="Summer Lemonade Campaign"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Summer Lemonade Campaign</h3>
+                  <p>Social Media Advertising</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="product">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Luxury Serum.png"
+                alt="Luxury Serum Campaign"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Product Hero — Luxury Serum Campaign</h3>
+                  <p>Product Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="beauty">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Effortless glow, natural you..png"
+                alt="Skincare Campaign"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Human Hero — Skincare Campaign</h3>
+                  <p>Beauty Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="social">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/burger.png"
+                alt="Burger Restaurant Social Media Ad"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Burger Restaurant Social Media Ad</h3>
+                  <p>Social Media Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="beauty">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Elegant Lace Top and Golden Handbag.png"
+                alt="Elegant Lace Top and Golden Handbag"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>New Arrival — Blouse Advertisement</h3>
+                  <p>Fashion Advertising Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="social">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/trip.png"
+                alt="Travel Promotion Campaign"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Travel Promotion Campaign</h3>
+                  <p>Social Media Campaign</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project" data-cat="logo">
+            <div class="project-image">
+              <img
+                src="assets/images/Projects/Wrestling.jpg"
+                alt="Wrestling Team Logo"
+              />
+              <div class="overlay">
+                <div class="project-info">
+                  <h3>Wrestling Team Logo</h3>
+                  <p>Logo Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-category">
+        <h3 class="projects-category-title">Business Cards</h3>
+        <div class="business-cards-grid">
+          <div class="business-card-project">
+            <div class="business-card-image">
+              <img
+                src="assets/images/Projects/Selora (1)/1.png"
+                alt="Business Card Front"
+              />
+              <div class="business-card-label">Front</div>
+            </div>
+            <div class="business-card-image">
+              <img
+                src="assets/images/Projects/Selora (1)/Selora (1).png"
+                alt="Business Card Back"
+              />
+              <div class="business-card-label">Back</div>
+            </div>
+            <div class="business-card-overlay">
+              <div>
+                <h3>Business Card Design</h3>
+                <p>Brand Identity for a Client</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--================ LIGHTBOX ================-->
+    <div class="image-lightbox" id="image-lightbox">
+      <button class="lightbox-close" id="lightbox-close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button class="lightbox-btn lightbox-prev" id="lightbox-prev">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="Project Preview" />
+      </div>
+      <button class="lightbox-btn lightbox-next" id="lightbox-next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <div class="zoom-controls">
+        <button id="zoom-out"><i class="fa-solid fa-minus"></i></button>
+        <button id="zoom-reset"><i class="fa-solid fa-expand"></i></button>
+        <button id="zoom-in"><i class="fa-solid fa-plus"></i></button>
       </div>
     </div>
-  </div>
 
-  <div class="projects-category">
-    <h3 class="projects-category-title">Posters &amp; Advertising</h3>
-    <div class="filters">
-      <button class="chip active" data-f="all">All</button>
-      <button class="chip" data-f="social">Social Media</button>
-      <button class="chip" data-f="beauty">Beauty &amp; Fashion</button>
-      <button class="chip" data-f="product">Product</button>
-      <button class="chip" data-f="logo">Logo Design</button>
-    </div>
-    <div class="projects-grid">
-      <div class="project" data-cat="product"><div class="project-image"><img src="assets/images/Projects/Nike Design.png" alt="Nike Product Advertisement"><div class="overlay"><div class="project-info"><h3>Nike Product Advertisement</h3><p>Product Advertising Design</p></div></div></div></div>
-      <div class="project" data-cat="social"><div class="project-image"><img src="assets/images/Projects/lemonade.png" alt="Summer Lemonade Campaign"><div class="overlay"><div class="project-info"><h3>Summer Lemonade Campaign</h3><p>Social Media Advertising</p></div></div></div></div>
-      <div class="project" data-cat="product"><div class="project-image"><img src="assets/images/Projects/Luxury Serum.png" alt="Luxury Serum Campaign"><div class="overlay"><div class="project-info"><h3>Product Hero — Luxury Serum Campaign</h3><p>Product Advertising Design</p></div></div></div></div>
-      <div class="project" data-cat="beauty"><div class="project-image"><img src="assets/images/Projects/Effortless glow, natural you..png" alt="Skincare Campaign"><div class="overlay"><div class="project-info"><h3>Human Hero — Skincare Campaign</h3><p>Beauty Advertising Design</p></div></div></div></div>
-      <div class="project" data-cat="social"><div class="project-image"><img src="assets/images/Projects/burger.png" alt="Burger Restaurant Social Media Ad"><div class="overlay"><div class="project-info"><h3>Burger Restaurant Social Media Ad</h3><p>Social Media Design</p></div></div></div></div>
-      <div class="project" data-cat="beauty"><div class="project-image"><img src="assets/images/Projects/Elegant Lace Top and Golden Handbag.png" alt="Elegant Lace Top and Golden Handbag"><div class="overlay"><div class="project-info"><h3>New Arrival — Blouse Advertisement</h3><p>Fashion Advertising Design</p></div></div></div></div>
-      <div class="project" data-cat="social"><div class="project-image"><img src="assets/images/Projects/trip.png" alt="Travel Promotion Campaign"><div class="overlay"><div class="project-info"><h3>Travel Promotion Campaign</h3><p>Social Media Campaign</p></div></div></div></div>
-      <div class="project" data-cat="logo"><div class="project-image"><img src="assets/images/Projects/Wrestling.jpg" alt="Wrestling Team Logo"><div class="overlay"><div class="project-info"><h3>Wrestling Team Logo</h3><p>Logo Design</p></div></div></div></div>
-    </div>
-  </div>
-
-  <div class="projects-category">
-    <h3 class="projects-category-title">Business Cards</h3>
-    <div class="business-cards-grid">
-      <div class="business-card-project">
-        <div class="business-card-image"><img src="assets/images/Projects/Selora (1)/1.png" alt="Business Card Front"><div class="business-card-label">Front</div></div>
-        <div class="business-card-image"><img src="assets/images/Projects/Selora (1)/Selora (1).png" alt="Business Card Back"><div class="business-card-label">Back</div></div>
-        <div class="business-card-overlay"><div><h3>Business Card Design</h3><p>Brand Identity for a Client</p></div></div>
+    <!--================ CONTACT ================-->
+    <section id="contact">
+      <h2 class="section-title">Let's make <em>something</em></h2>
+      <div class="contact-links">
+        <a href="mailto:manwellaemad0@gmail.com"
+          ><i class="fa-solid fa-envelope"></i> manwellaemad0@gmail.com</a
+        >
+        <a href="https://wa.me/201227462327" target="_blank"
+          ><i class="fa-brands fa-whatsapp"></i> +20 122 746 2327</a
+        >
+        <a href="https://linkedin.com/in/manwella-emad" target="_blank"
+          ><i class="fab fa-linkedin"></i> LinkedIn</a
+        >
+        <a href="https://github.com/manwella-emad" target="_blank"
+          ><i class="fab fa-github"></i> GitHub</a
+        >
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!--================ LIGHTBOX ================-->
-<div class="image-lightbox" id="image-lightbox">
-  <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
-  <button class="lightbox-btn lightbox-prev" id="lightbox-prev"><i class="fa-solid fa-chevron-left"></i></button>
-  <div class="lightbox-content"><img id="lightbox-image" src="" alt="Project Preview"></div>
-  <button class="lightbox-btn lightbox-next" id="lightbox-next"><i class="fa-solid fa-chevron-right"></i></button>
-  <div class="zoom-controls">
-    <button id="zoom-out"><i class="fa-solid fa-minus"></i></button>
-    <button id="zoom-reset"><i class="fa-solid fa-expand"></i></button>
-    <button id="zoom-in"><i class="fa-solid fa-plus"></i></button>
-  </div>
-</div>
+    <a
+      class="wa-float"
+      href="https://wa.me/201227462327"
+      target="_blank"
+      aria-label="WhatsApp"
+      ><i class="fa-brands fa-whatsapp"></i
+    ></a>
 
-<!--================ CONTACT ================-->
-<section id="contact">
-  <h2 class="section-title">Let's make <em>something</em></h2>
-  <div class="contact-links">
-    <a href="mailto:manwellaemad0@gmail.com"><i class="fa-solid fa-envelope"></i> manwellaemad0@gmail.com</a>
-    <a href="https://wa.me/201227462327" target="_blank"><i class="fa-brands fa-whatsapp"></i> +20 122 746 2327</a>
-    <a href="https://linkedin.com/in/manwella-emad" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-    <a href="https://github.com/manwella-emad" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-  </div>
-</section>
+    <footer>
+      © <span id="year">2026</span> Manwella Emad | Graphic Design Portfolio
+    </footer>
 
-<a class="wa-float" href="https://wa.me/201227462327" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-
-<footer>© <span id="year">2026</span> Manwella Emad | Graphic Design Portfolio</footer>
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
